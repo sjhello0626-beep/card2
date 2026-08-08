@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+:root{
+--kr-heading:'Caprasimo','Gowun Batang',serif;--kr-body:'Figtree','Gowun Dodum',system-ui,sans-serif;
+--color-bg:#f5ead8;--color-surface:#ebddc5;--color-text:#201e1d;--color-accent:#c67139;--color-accent-2:#7a8a5e;--color-divider:rgba(32,30,29,.16);
+--color-neutral-100:#f9f4ed;--color-neutral-200:#eee7db;--color-neutral-300:#dcd3c4;--color-neutral-400:#c0b6a5;--color-neutral-600:#82796a;--color-neutral-700:#645c50;--color-neutral-800:#474238;--color-neutral-900:#2e2b25;
+--color-accent-100:#fff2eb;--color-accent-200:#ffe1d0;--color-accent-300:#ffc6a5;--color-accent-700:#8c491a;--color-accent-800:#643312;--color-accent-900:#402310;
+--color-accent-2-200:#e1eecc;--color-accent-2-600:#728157;--color-accent-2-800:#3d472b;
+--space-1:4.4px;--space-2:8.8px;--space-3:13.2px;--space-4:17.6px;--space-6:26.4px;--space-8:35.2px;
+--radius-sm:8px;--radius-md:16px;--radius-lg:28px;
+--shadow-sm:0 1px 2px rgba(46,43,37,.14);--shadow-md:0 3px 10px rgba(46,43,37,.16);--shadow-lg:0 12px 32px rgba(46,43,37,.22);
+}
+.washed{filter:saturate(0.6) contrast(0.85) brightness(1.1) opacity(0.94)}
+body{margin:0;background:var(--color-neutral-200);font-family:var(--kr-body)}
+a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
+.dv-turn{padding:var(--space-8) calc(var(--space-8) + var(--space-3)) var(--space-8);border-bottom:1px solid var(--color-divider);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:var(--space-2);margin:0 0 var(--space-6)}
+.dv-tid{font:600 10px var(--kr-body);padding:4px 10px;background:var(--color-accent);color:var(--color-bg);border-radius:999px;text-decoration:none}
+.dv-tname{font:400 14px/1.2 var(--kr-heading);color:var(--color-text)}
+.dv-opts{display:flex;flex-wrap:nowrap;gap:var(--space-8);align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:var(--space-2);scroll-margin-top:16px}
+.dv-oid{font:600 10.5px var(--kr-body);padding:4px 10px;background:var(--color-accent-200);color:var(--color-accent-800);border-radius:999px;text-decoration:none}
+.dv-olabel{display:flex;align-items:center;gap:var(--space-2);font:400 12px/1.3 var(--kr-body);color:var(--color-neutral-700)}
+.dv-card{background:var(--color-bg);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden}
+.dv-opt:target .dv-oid{background:var(--color-accent);color:var(--color-bg)}
+.dv-next{margin:var(--space-6) 0 0;font:400 12.5px/1.7 var(--kr-body);color:var(--color-neutral-700)}
+</style><template id="__bundler_thumbnail" data-bg-color="#c67139">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#c67139"></rect><circle cx="600" cy="420" r="150" fill="#f5ead8"></circle><rect x="585" y="200" width="30" height="180" rx="15" fill="#f5ead8"></rect></svg>
+</template>
+</helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">아침 메시지 카드 — 카드 + 프롬프트 편집 (모든 컨트롤 작동)</span></div>
+<div class="dv-opts" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:flex-start;gap:var(--space-8)">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>풀블리드 — 종교·테마·날짜에 따라 문구와 배경이 바뀝니다</div>
+<div class="dv-card" style="width:420px;box-shadow:var(--shadow-lg)">
+<div style="position:relative;width:420px;height:525px;background:var(--color-accent-900);overflow:hidden">
+<div class="washed" style="position:absolute;inset:0">
+<img src="{{ photo }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+</div>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(64,35,16,.5) 0%,rgba(64,35,16,.1) 28%,rgba(64,35,16,.72) 66%,rgba(64,35,16,.95) 100%)"></div>
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:var(--space-6);box-sizing:border-box">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-2)">
+<div style="font:400 11.5px/1 var(--kr-body);color:var(--color-accent-200);letter-spacing:.16em">{{ dateLine }}</div>
+<div style="font:400 11px/1 var(--kr-body);color:var(--color-accent-100);background:rgba(255,226,208,.18);border-radius:999px;padding:6px 12px">{{ faithLabel }}</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:var(--space-4)">
+<div style="width:34px;height:5px;border-radius:999px;background:var(--color-accent-300)"></div>
+<div style="font:400 28px/1.55 var(--kr-heading);color:var(--color-neutral-100);text-wrap:pretty">{{ headline }}</div>
+<div style="font:400 13.5px/1.85 var(--kr-body);color:rgba(249,244,237,.82);text-wrap:pretty">{{ body }}</div>
+<div style="background:rgba(255,226,208,.13);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font:400 12.5px/1.75 var(--kr-heading);color:var(--color-accent-200)">“{{ quote }}”<br><span style="font:400 11px/1.6 var(--kr-body);color:rgba(255,226,208,.62)">{{ source }}</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>프롬프트 편집 — 탭·버튼·토글 모두 작동</div>
+<div class="dv-card" style="width:390px">
+<div style="width:390px;background:var(--color-bg);display:flex;flex-direction:column;box-sizing:border-box">
+<div style="padding:var(--space-6) var(--space-6) var(--space-4);display:flex;flex-direction:column;gap:var(--space-4)">
+<div style="display:flex;align-items:center;justify-content:space-between">
+<div style="font:400 20px/1.2 var(--kr-heading);color:var(--color-text)">아침 메시지 설정</div>
+</div>
+<div style="display:flex;gap:4px;background:var(--color-surface);border-radius:999px;padding:4px">
+<button style="{{ tabSecular }}" onClick="{{ pickSecular }}">무교</button>
+<button style="{{ tabBuddhist }}" onClick="{{ pickBuddhist }}">불교</button>
+<button style="{{ tabChristian }}" onClick="{{ pickChristian }}">기독교</button>
+<button style="{{ tabCatholic }}" onClick="{{ pickCatholic }}">천주교</button>
+</div>
+</div>
+<div style="flex:1;overflow:hidden;padding:0 var(--space-6);display:flex;flex-direction:column;gap:var(--space-3)">
+<div style="background:var(--color-neutral-100);border:1px solid var(--color-divider);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);display:flex;flex-direction:column;gap:6px;font:400 11.5px/1.6 var(--kr-body);color:var(--color-neutral-800)">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px">· 가치관 <span style="font-size:11px;border-radius:999px;padding:2px 9px;background:var(--color-accent-200);color:var(--color-accent-800)">{{ faithValue }}</span></div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px">· 인용 출처 <span style="font-size:11px;border-radius:999px;padding:2px 9px;background:var(--color-accent-200);color:var(--color-accent-800)">{{ sourceHint }}</span></div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px">· 배경 테마 <span style="font-size:11px;border-radius:999px;padding:2px 9px;background:var(--color-accent-200);color:var(--color-accent-800)">{{ themeLine }}</span></div>
+</div>
+<div style="display:flex;gap:var(--space-2)">
+<button onClick="{{ nextTheme }}" style="flex:1;padding:10px 0;border:1px solid var(--color-divider);border-radius:999px;background:transparent;cursor:pointer;font:400 11.5px/1.2 var(--kr-body);color:var(--color-text)">＋ 배경 테마 바꾸기</button>
+<sc-if value="{{ sendOn }}" hint-placeholder-val="{{ true }}">
+<button onClick="{{ randomMsg }}" style="flex:1;padding:10px 0;border:1px solid var(--color-divider);border-radius:999px;background:transparent;cursor:pointer;font:400 11.5px/1.2 var(--kr-body);color:var(--color-text)">＋ 문구 바꾸기</button>
+</sc-if>
+<button onClick="{{ reset }}" style="flex:1;padding:10px 0;border:1px solid var(--color-divider);border-radius:999px;background:transparent;cursor:pointer;font:400 11.5px/1.2 var(--kr-body);color:var(--color-text)">↺ 기본값 복원</button>
+</div>
+<button onClick="{{ resetAll }}" style="padding:10px 0;border:1px solid var(--color-divider);border-radius:999px;background:transparent;cursor:pointer;font:400 11.5px/1.2 var(--kr-body);color:var(--color-text)">↻ 모두 기본값으로 복원 (전체 종교)</button>
+</div>
+<div style="padding:var(--space-4) var(--space-6) var(--space-6);display:flex;flex-direction:column;gap:var(--space-3)">
+<div onClick="{{ toggleSend }}" style="display:flex;align-items:center;justify-content:space-between;background:var(--color-surface);border-radius:999px;padding:var(--space-2) var(--space-4);font:400 12px/1.4 var(--kr-body);color:var(--color-neutral-800);cursor:pointer">
+<span>{{ sendLabel }}</span>
+<span style="{{ trackStyle }}"><span style="{{ knobStyle }}"></span></span>
+</div>
+<sc-if value="{{ sendOn }}" hint-placeholder-val="{{ true }}">
+<button onClick="{{ makeCard }}" style="{{ makeBtnStyle }}">{{ makeLabel }}</button>
+</sc-if>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">다음 시도: “<a class="dv-oid" href="#1a">1a</a>를 정사각(1:1)으로” · “카카오톡 대화창에 얹힌 모습으로” · “발송 시간 선택 화면 추가”</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const P = {
+  chapel: 'https://images.unsplash.com/photo-1691036073374-b638e4c285f1?auto=format&fit=crop&w=1000&q=70',
+  stained: 'https://images.unsplash.com/photo-1691037819783-49624b4279ee?auto=format&fit=crop&w=1000&q=70',
+  nave: 'https://images.unsplash.com/photo-1654033504667-59d7bfb2a0c3?auto=format&fit=crop&w=1000&q=70',
+  cross: 'https://images.unsplash.com/photo-1625702929485-984787146d49?auto=format&fit=crop&crop=entropy&w=840&h=1050&q=75',
+  candles: 'https://images.unsplash.com/photo-1476900164809-ff19b8ae5968?auto=format&fit=crop&w=1000&q=70',
+  temple: 'https://images.unsplash.com/photo-1684134549350-be5fd0d8feaa?auto=format&fit=crop&w=1000&q=70',
+  mist: 'https://images.unsplash.com/photo-1763202364215-7367e765ad3d?auto=format&fit=crop&w=1000&q=70',
+  field: 'https://images.unsplash.com/photo-1762987297518-d6ae33ee593d?auto=format&fit=crop&w=1000&q=70',
+  pews: 'https://images.unsplash.com/photo-1760872752928-c986c1f27e4e?auto=format&fit=crop&w=1000&q=70',
+  hanok: 'https://images.unsplash.com/photo-1664675164531-5b8f727720e5?auto=format&fit=crop&w=1000&q=70',
+  pagoda: 'https://images.unsplash.com/photo-1700639687072-dd8c8d13b3e8?auto=format&fit=crop&w=1000&q=70',
+  books: 'https://images.unsplash.com/photo-1641305286537-9ddffa96a434?auto=format&fit=crop&w=1000&q=70',
+  aisle: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&w=1000&q=70',
+  rays: 'https://images.unsplash.com/photo-1533119510849-b64bf60c83c3?auto=format&fit=crop&w=1000&q=70',
+  rose: 'https://images.unsplash.com/photo-1632230997264-b2bfc65cb8b4?auto=format&fit=crop&w=1000&q=70',
+  darkNave: 'https://images.unsplash.com/photo-1748391898044-1b7bf45697e1?auto=format&fit=crop&w=1000&q=70',
+  stupa: 'https://images.unsplash.com/photo-1502737459521-e4b80edec108?auto=format&fit=crop&w=1000&q=70',
+  seaTemple: 'https://images.unsplash.com/photo-1740785978879-506357754d72?auto=format&fit=crop&w=1000&q=70',
+  library: 'https://images.unsplash.com/photo-1720394493270-eee48be9760c?auto=format&fit=crop&w=1000&q=70',
+  windowLight: 'https://images.unsplash.com/photo-1525442134426-ee004bd921fa?auto=format&fit=crop&w=1000&q=70'
+};
+const FAITHS = {
+  christian: {
+    faithLabel: '성경적 지혜',
+    faithValue: '성경적 지혜와 사랑의 가르침',
+    sourceHint: '⟪잠언⟫, ⟪시편⟫',
+    themes: [
+      { line: '조용한 예배당 / 십자가 위로 비치는 아침 햇살', photo: P.chapel },
+      { line: '스테인드글라스로 스미는 색빛', photo: P.stained },
+      { line: '새벽 기도 뒤 텅 빈 나무 회중석', photo: P.pews },
+      { line: '긴 통로 끝으로 번지는 아침 빛', photo: P.aisle },
+      { line: '창을 넘어 쏟아지는 빛줄기', photo: P.rays }
+    ],
+    messages: [
+      { headline: '내가 옳다는 마음이 올라올 때, 한 걸음 물러섭니다.', body: '오늘 누군가의 말에 마음이 먼저 뜨거워진다면, 대답 대신 숨을 한 번 고르세요. 낮아진 자리에 빛이 머물고, 그 자리에서 하루의 일이 다시 또렷해집니다.', quote: '교만은 패망의 선봉이요 거만한 마음은 넘어짐의 앞잡이니라', source: '— ⟪잠언⟫ 16장 18절' },
+      { headline: '오늘의 말 한마디를, 조금 늦게 꺼내 보세요.', body: '급하게 나간 말은 대개 나를 지키려는 말입니다. 한 박자 늦추는 사이 마음이 가라앉고, 남는 것은 관계와 해야 할 일뿐입니다.', quote: '노하기를 더디 하는 자는 용사보다 나으니라', source: '— ⟪잠언⟫ 16장 32절' },
+      { headline: '비교를 내려놓으면 오늘이 넉넉해집니다.', body: '누구의 속도와도 겨루지 않기로 하는 아침. 어제의 나보다 한 뼘이면 충분합니다. 그 걸음으로 오늘의 몫을 조용히 해내세요.', quote: '마음의 즐거움은 양약이라도 심령의 근심은 뼈를 마르게 하느니라', source: '— ⟪잠언⟫ 17장 22절' },
+      { headline: '내 계획을 쥔 손에 힘을 조금 뺍니다.', body: '뜻대로 되지 않는 일 앞에서 조급함이 올라오면, 오늘 할 수 있는 한 가지만 정하세요. 그 한 가지가 하루를 지탱합니다.', quote: '사람이 마음으로 자기의 길을 계획할지라도 그의 걸음을 인도하시는 이는 여호와시니라', source: '— ⟪잠언⟫ 16장 9절' },
+      { headline: '듣는 귀 하나가 하루를 바꿉니다.', body: '먼저 말하려는 마음을 잠시 접어두면, 상대의 진짜 사정이 보입니다. 그 이해가 오늘의 일을 훨씬 수월하게 만듭니다.', quote: '듣기는 속히 하고 말하기는 더디 하라', source: '— ⟪야고보서⟫ 1장 19절' },
+      { headline: '오늘 하루치의 마음만 챙깁니다.', body: '어제의 후회와 내일의 불안을 함께 지고 걷지 마세요. 아침에 받은 힘은 오늘 몫으로 충분합니다.', quote: '이는 아침마다 새로우니 주의 성실하심이 크시도소이다', source: '— ⟪예레미야애가⟫ 3장 23절' }
+    ]
+  },
+  buddhist: {
+    faithLabel: '자비의 가르침',
+    faithValue: '불교의 지혜와 자비의 가르침',
+    sourceHint: '⟪법구경⟫, ⟪숫타니파타⟫',
+    themes: [
+      { line: '고즈넉한 사찰 / 돌계단과 산문(山門)', photo: P.temple },
+      { line: '큰 나무가 지키는 산사의 마당', photo: P.hanok },
+      { line: '숲속에 선 오래된 탑', photo: P.pagoda },
+      { line: '하늘로 솟은 검은 석탑', photo: P.stupa },
+      { line: '바다를 마주한 해안 사찰', photo: P.seaTemple }
+    ],
+    messages: [
+      { headline: '화는 나를 지키려다 나를 태웁니다.', body: "'나'라는 생각을 조금 내려놓으면 오늘의 다툼은 절반으로 줄어듭니다. 비워낸 자리에 맑은 마음을 채우고, 해야 할 일로 조용히 걸어가세요.", quote: '원한은 원한으로는 결코 풀리지 않는다', source: '— ⟪법구경⟫ 쌍서품 5게' },
+      { headline: '오늘 마음을 지키는 일이 가장 큰 일입니다.', body: '바깥의 소란은 내가 정할 수 없지만, 그것을 받는 마음의 결은 내가 고를 수 있습니다. 잔잔한 마음으로 첫 일을 시작해 보세요.', quote: '마음이 모든 것에 앞서고, 마음이 모든 것을 만든다', source: '— ⟪법구경⟫ 쌍서품 1게' },
+      { headline: '가벼워질수록 멀리 갑니다.', body: '쥐고 있는 것이 많을수록 걸음은 무거워집니다. 오늘 하나쯤은 놓아도 괜찮습니다. 그 자리에 여유가 들어섭니다.', quote: '홀로 가라, 무소의 뿔처럼', source: '— ⟪숫타니파타⟫ 무소의 뿔' },
+      { headline: '남의 허물보다 내 걸음을 먼저 봅니다.', body: '오늘 누군가의 부족함이 크게 보인다면, 그만큼 내 마음이 곤두서 있다는 신호입니다. 시선을 안으로 돌리면 하루가 조용해집니다.', quote: '남의 허물은 보기 쉬우나 자기의 허물은 보기 어렵다', source: '— ⟪법구경⟫ 진구품 252게' },
+      { headline: '이기려는 마음을 내려놓습니다.', body: '이기면 원한을 남기고, 지면 괴로움이 남습니다. 다투지 않기로 하는 순간 오늘의 마음은 편안해집니다.', quote: '승리는 원한을 낳고 패자는 괴로움 속에 눕는다', source: '— ⟪법구경⟫ 안락품 201게' },
+      { headline: '오늘 할 일을 오늘 합니다.', body: '미룬 일은 마음의 무게가 되어 하루를 누릅니다. 지금 손에 잡히는 가장 작은 일부터 시작해 보세요.', quote: '오늘 할 일을 내일로 미루지 말라', source: '— ⟪법구경⟫ 도장품' }
+    ]
+  },
+  catholic: {
+    faithLabel: '가톨릭 영성',
+    faithValue: '가톨릭 영성과 성인들의 지혜',
+    sourceHint: '성경 구절, 이해인 수녀 시집',
+    themes: [
+      { line: '스테인드글라스와 십자가 / 아침 빛이 드는 성당', photo: P.cross },
+      { line: '봉헌초가 흔들리는 새벽 성당', photo: P.candles },
+      { line: '고요한 회랑에 드는 긴 빛', photo: P.nave },
+      { line: '장미창의 색빛이 번지는 아침', photo: P.rose },
+      { line: '어둑한 성당에 스미는 한 줄기 빛', photo: P.darkNave }
+    ],
+    messages: [
+      { headline: '작아지는 연습이 하루를 넓힙니다.', body: '겸손은 나를 낮추는 일이 아니라, 다른 이를 담을 자리를 만드는 일입니다. 그 넉넉함으로 오늘의 일과 사람을 마주해 보세요.', quote: '마음이 가난한 사람은 행복하다', source: '— ⟪마태오 복음⟫ 5장 3절' },
+      { headline: '오늘의 짐은 오늘 몫만 지면 됩니다.', body: '아직 오지 않은 걱정까지 미리 지고 걷지 마세요. 지금 눈앞의 한 가지에 마음을 두면, 하루는 생각보다 가볍습니다.', quote: '내일 일은 내일이 걱정할 것이다', source: '— ⟪마태오 복음⟫ 6장 34절' },
+      { headline: '먼저 듣는 사람이 되어 보세요.', body: '이해받고 싶은 마음을 잠시 뒤로 미루면 대화의 온도가 달라집니다. 오늘 한 사람의 말을 끝까지 들어주는 것으로 충분합니다.', quote: '온유한 사람은 행복하다', source: '— ⟪마태오 복음⟫ 5장 5절' },
+      { headline: '작은 일에 정성을 들이는 하루.', body: '눈에 띄지 않는 일을 성실히 해내는 사람에게 하루는 부끄럽지 않습니다. 오늘의 사소한 한 가지를 끝까지 해보세요.', quote: '아주 작은 일에 성실한 사람은 큰 일에도 성실하다', source: '— ⟪루카 복음⟫ 16장 10절' },
+      { headline: '판단하기 전에 한 번 더 바라봅니다.', body: '내 눈의 티는 늘 보이지 않습니다. 오늘 누군가를 규정하려는 마음이 들면, 그 자리에서 잠시 멈춰 서세요.', quote: '남을 심판하지 마라', source: '— ⟪마태오 복음⟫ 7장 1절' },
+      { headline: '고요함 속에서 힘이 자랍니다.', body: '분주함이 성실함은 아닙니다. 아침의 짧은 침묵이 하루의 결정을 단단하게 만듭니다.', quote: '너희는 잠잠히 있어라', source: '— ⟪시편⟫ 46편 10절' }
+    ]
+  },
+  secular: {
+    faithLabel: '고전 인문학',
+    faithValue: '동서양의 고전 철학과 인문학적 통찰',
+    sourceHint: '⟪명심보감⟫, ⟪논어⟫, 스토아 철학',
+    themes: [
+      { line: '여명이 밝아오는 들판', photo: P.field },
+      { line: '햇살이 스미는 새벽 숲', photo: P.mist },
+      { line: '오래된 책과 따뜻한 촛불', photo: P.books },
+      { line: '햇살이 비치는 서재의 책장', photo: P.library },
+      { line: '창가에 내려앉은 아침 햇빛', photo: P.windowLight }
+    ],
+    messages: [
+      { headline: '자존심을 내려놓아야 비로소 배웁니다.', body: '오늘 마주할 일 앞에서 내가 아는 것을 잠시 접어두세요. 낮은 마음으로 듣는 사람이 결국 가장 멀리 갑니다.', quote: '아는 것을 안다 하고 모르는 것을 모른다 하는 것, 이것이 아는 것이다', source: '— ⟪논어⟫ 위정편 17장' },
+      { headline: '내가 어쩔 수 없는 일에는 마음을 두지 않습니다.', body: '오늘 하루의 평온은 대개 여기서 갈립니다. 바꿀 수 있는 것에만 힘을 쓰고, 나머지는 지나가게 두세요.', quote: '우리를 흔드는 것은 사건이 아니라 사건에 대한 우리의 생각이다', source: '— 에픽테토스, ⟪엥케이리디온⟫ 5' },
+      { headline: '남을 탓하는 자리에서는 아무것도 자라지 않습니다.', body: '화살을 밖으로 돌리는 대신 안을 살피는 아침. 그 정직함이 오늘의 실력을 만듭니다.', quote: '군자는 자기에게서 구하고, 소인은 남에게서 구한다', source: '— ⟪논어⟫ 위령공편 20장' },
+      { headline: '참는 것이 아니라, 흘려보내는 것입니다.', body: '억누른 감정은 사라지지 않고 남습니다. 이름을 붙여 한 번 바라보고 나면, 그 감정은 조용히 지나갑니다.', quote: '참을 인(忍) 자 셋이면 살인도 피한다', source: '— ⟪명심보감⟫ 계성편' },
+      { headline: '어제의 나와만 겨룹니다.', body: '남과의 비교는 끝이 없습니다. 오늘 한 가지를 어제보다 조금 낫게 하는 것, 그것이 실력이 쌓이는 방식입니다.', quote: '날마다 새롭게 하고, 또 날마다 새롭게 하라', source: '— ⟪대학⟫ 전 2장' },
+      { headline: '서두르지 않는 사람이 멀리 갑니다.', body: '빨리 가려다 길을 잃는 날이 있습니다. 오늘은 속도 대신 방향을 확인하는 아침으로 삼아 보세요.', quote: '빨리 하려 하면 이루지 못하고, 작은 이익을 보면 큰 일을 이루지 못한다', source: '— ⟪논어⟫ 자로편 17장' }
+    ]
+  }
+};
+const EN_UNUSED_1 = {
+  christian: {
+    faithLabel: 'Biblical wisdom',
+    faithValue: 'Biblical wisdom and the teaching of love',
+    sourceHint: 'Proverbs, Psalms',
+    themes: ['A quiet chapel / morning light over the cross', 'Color light through stained glass', 'Empty wooden pews after dawn prayer', 'Morning light spreading down the long aisle', 'Sunbeams pouring through the window'],
+    messages: [
+      { headline: 'When you feel certain you are right, take one step back.', body: "If someone's words heat your heart first today, breathe before you answer. Light rests in the lowered place, and from there the day's work grows clear again.", quote: 'Pride goeth before destruction, and a haughty spirit before a fall.', source: '— Proverbs 16:18' },
+      { headline: "Let today's words come out a little later.", body: 'Words that rush out are usually there to defend me. In that one held beat the heart settles, and what remains is the relationship and the work.', quote: 'He that is slow to anger is better than the mighty.', source: '— Proverbs 16:32' },
+      { headline: 'Set comparison down and the day feels wide.', body: "A morning of racing no one else's pace. A hand's width past yesterday is enough. Walk that step and quietly finish your share of today.", quote: 'A merry heart doeth good like a medicine, but a broken spirit drieth the bones.', source: '— Proverbs 17:22' },
+      { headline: 'Loosen your grip on the plan a little.', body: 'When impatience rises in front of what will not go your way, choose one thing you can do today. That one thing holds up the day.', quote: "A man's heart deviseth his way, but the Lord directeth his steps.", source: '— Proverbs 16:9' },
+      { headline: 'One listening ear changes the day.', body: 'Fold away the urge to speak first and the other person\u2019s real situation appears. That understanding makes today\u2019s work far lighter.', quote: 'Be swift to hear, slow to speak.', source: '— James 1:19' },
+      { headline: "Carry only today's portion of heart.", body: "Don't walk carrying yesterday's regret and tomorrow's worry together. The strength given this morning is enough for today.", quote: 'They are new every morning: great is thy faithfulness.', source: '— Lamentations 3:23' }
+    ]
+  },
+  buddhist: {
+    faithLabel: 'Teaching of compassion',
+    faithValue: 'The wisdom and compassion of Buddhist teaching',
+    sourceHint: 'Dhammapada, Sutta Nipata',
+    themes: ['A still temple / stone steps and the mountain gate', 'A temple yard guarded by an old tree', 'An ancient pagoda standing in the forest', 'A dark stone stupa rising to the sky', 'A coastal temple facing the sea'],
+    messages: [
+      { headline: 'Anger tries to protect me and burns me instead.', body: 'Set the thought of "I" down a little and today\u2019s quarrels halve. Fill the emptied place with a clear mind and walk quietly to your work.', quote: 'Hatred is never appeased by hatred.', source: '— Dhammapada, Yamaka 5' },
+      { headline: 'Guarding the mind is the largest work of today.', body: 'I cannot decide the noise outside, but I can choose the grain of the mind that receives it. Begin the first task with a calm heart.', quote: 'Mind precedes all things; mind is their chief.', source: '— Dhammapada, Yamaka 1' },
+      { headline: 'The lighter you are, the farther you go.', body: 'The more you hold, the heavier the step. It is all right to let one thing go today. Ease moves into that space.', quote: 'Walk alone, like the horn of a rhinoceros.', source: '— Sutta Nipata, Rhinoceros Horn' },
+      { headline: "Look at your own step before another's fault.", body: "If someone's shortcoming looms large today, that is a signal of how tense your own mind is. Turn the gaze inward and the day quiets.", quote: "The faults of others are easily seen; one's own are hard to see.", source: '— Dhammapada, Mala 252' },
+      { headline: 'Put down the wish to win.', body: 'Winning leaves resentment; losing leaves suffering. The moment you decide not to contend, today becomes easy.', quote: 'Victory breeds hatred; the defeated lie down in sorrow.', source: '— Dhammapada, Sukha 201' },
+      { headline: "Do today's work today.", body: 'What is postponed becomes weight and presses on the day. Start with the smallest thing already in your hands.', quote: "Do not put off till tomorrow what should be done today.", source: '— Dhammapada, Danda' }
+    ]
+  },
+  catholic: {
+    faithLabel: 'Catholic spirituality',
+    faithValue: 'Catholic spirituality and the wisdom of the saints',
+    sourceHint: 'Scripture, the poems of Sr. Lee Hae-in',
+    themes: ['Stained glass and the cross / a church in morning light', 'A dawn church with votive candles flickering', 'Long light falling in a quiet cloister', 'A morning washed in rose-window color', 'A single shaft of light in a dim church'],
+    messages: [
+      { headline: 'Practicing smallness widens the day.', body: 'Humility is not lowering myself but making room to hold another. Meet today\u2019s work and people with that spaciousness.', quote: 'Blessed are the poor in spirit.', source: '— Matthew 5:3' },
+      { headline: "Carry only today's load today.", body: 'Do not walk already burdened with worries that have not come. Rest your mind on the one thing in front of you and the day is lighter than you thought.', quote: 'Tomorrow will worry about itself.', source: '— Matthew 6:34' },
+      { headline: 'Try being the one who listens first.', body: 'Postpone the wish to be understood and the temperature of the conversation changes. Hearing one person out today is enough.', quote: 'Blessed are the meek.', source: '— Matthew 5:5' },
+      { headline: 'A day given wholly to small things.', body: 'The day is not shameful for the person who does unnoticed work faithfully. Finish one small thing today, all the way.', quote: 'Whoever is faithful in very little is faithful also in much.', source: '— Luke 16:10' },
+      { headline: 'Look once more before you judge.', body: 'The speck in my own eye is never visible. When the urge to define someone rises today, pause right there.', quote: 'Do not judge.', source: '— Matthew 7:1' },
+      { headline: 'Strength grows inside stillness.', body: 'Busyness is not faithfulness. A short silence in the morning makes the day\u2019s decisions steady.', quote: 'Be still.', source: '— Psalm 46:10' }
+    ]
+  },
+  secular: {
+    faithLabel: 'Classical humanities',
+    faithValue: 'Classical philosophy and humanistic insight, East and West',
+    sourceHint: 'Myeongsim Bogam, Analects, Stoic philosophy',
+    themes: ['A field brightening at first light', 'A dawn forest steeped in sunlight', 'Old books and a warm candle', 'Library shelves lit by sunlight', 'Morning sun settling by the window'],
+    messages: [
+      { headline: 'Only when pride is set down does learning begin.', body: 'Fold away what you know before the work you face today. The one who listens with a low heart travels farthest.', quote: 'To know what you know and know what you do not know — that is knowledge.', source: '— Analects, Wei Zheng 17' },
+      { headline: 'I place no mind on what I cannot change.', body: "Today's calm usually divides right here. Spend your strength only on what can be changed and let the rest pass.", quote: 'People are disturbed not by things, but by the views they take of them.', source: '— Epictetus, Enchiridion 5' },
+      { headline: 'Nothing grows where blame is placed.', body: 'A morning of looking inward instead of turning the arrow outward. That honesty builds the skill of today.', quote: 'The superior person seeks it in himself; the small person seeks it in others.', source: '— Analects, Wei Ling Gong 20' },
+      { headline: 'Not enduring it — letting it flow through.', body: 'Suppressed feeling does not vanish; it stays. Name it, look at it once, and it passes quietly.', quote: 'Three characters of patience can avert even a killing.', source: '— Myeongsim Bogam, Gyeseong' },
+      { headline: 'Compete only with yesterday.', body: 'Comparison with others has no end. Doing one thing a little better than yesterday is how skill accumulates.', quote: 'Renew yourself daily, and again daily renew.', source: '— The Great Learning, Commentary 2' },
+      { headline: 'The unhurried one goes farthest.', body: 'Some days you lose the road by rushing. Make this morning about direction rather than speed.', quote: 'Desire to have things done quickly prevents their being done thoroughly.', source: '— Analects, Zi Lu 17' }
+    ]
+  }
+};
+const UI_UNUSED_1 = {
+  ko: { title: '아침 메시지 설정', tabs: ['무교', '불교', '기독교', '천주교'], value: '· 가치관', src: '· 인용 출처', theme: '· 배경 테마', nextTheme: '＋ 배경 테마 바꾸기', randomMsg: '＋ 문구 바꾸기', reset: '↺ 기본값 복원', resetAll: '↻ 모두 기본값으로 복원 (전체 종교)', sendOn: '매일 아침 6:30 랜덤 메시지 카드 발송', sendOff: '자동 발송 꺼짐', make: '오늘의 카드 만들기', made: '✓ 새 카드가 만들어졌어요 · 다시 만들기', prompt: '매일 아침, 하루를 시작하는 성인에게 따뜻한 위로와 성장의 에너지를 전하는 희망 메시지와 아침 풍경 이미지를 생성해 주세요. 전날과 비슷한 문구·주제·톤·배경은 피해 주세요.\n\n겸손의 미덕을 강조하고, 자만과 분노를 부드럽게 다스리도록 안내해 주세요. 반성에서 끝나지 않게, 비워낸 자리에 긍정적 에너지를 채워 하루의 목표로 나아가도록 다정하게 격려해 주세요. 한글 문구는 또렷하게 렌더링해 주세요.', langBtn: 'EN' },
+  en: { title: 'Morning message settings', tabs: ['Secular', 'Buddhist', 'Protestant', 'Catholic'], value: '· Values', src: '· Sources', theme: '· Backdrop', nextTheme: '＋ Change backdrop', randomMsg: '＋ Change message', reset: '↺ Reset defaults', resetAll: '↻ Reset all faiths to defaults', sendOn: 'Send a random card every morning at 6:30', sendOff: 'Auto-send off', make: "Make today's card", made: '✓ New card created · Make another', prompt: 'Each morning, generate a message of hope and a morning-landscape image that brings warm comfort and energy to an adult starting the day. Avoid wording, themes, tone and backdrops similar to the previous day.\n\nEmphasize the virtue of humility and guide the reader to soften pride and anger. Do not stop at reflection: fill the emptied space with positive energy and encourage them warmly toward the goals of the day. Render the text crisply.', langBtn: '한' }
+};
+const EN_DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const EN_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const EN_UNUSED_2 = {
+  christian: {
+    faithLabel: 'Biblical wisdom',
+    faithValue: 'Biblical wisdom and the teaching of love',
+    sourceHint: 'Proverbs, Psalms',
+    themes: ['A quiet chapel / morning light over the cross', 'Colour seeping through stained glass', 'Empty wooden pews after dawn prayer', 'Morning light spreading down the long aisle', 'Rays pouring through the window'],
+    messages: [
+      { headline: 'When you are sure you are right, take one step back.', body: "If someone's words heat you up first, breathe instead of answering. Light rests in the lowered place, and from there the day becomes clear again.", quote: 'Pride goes before destruction, a haughty spirit before a fall', source: '— Proverbs 16:18' },
+      { headline: "Let today's words come out a beat later.", body: 'Words that rush out are usually there to protect me. In that one pause the heart settles, and what remains is the relationship and the work.', quote: 'Whoever is slow to anger is better than the mighty', source: '— Proverbs 16:32' },
+      { headline: 'Put comparison down and today feels wide.', body: 'A morning to race no one. One span past yesterday is enough. Walk into your share of the day with that step.', quote: 'A joyful heart is good medicine, but a crushed spirit dries up the bones', source: '— Proverbs 17:22' },
+      { headline: 'Loosen your grip on the plan.', body: 'When things refuse to go your way, choose just one thing you can do today. That one thing carries the whole day.', quote: 'The heart of man plans his way, but the Lord establishes his steps', source: '— Proverbs 16:9' },
+      { headline: 'One listening ear changes a day.', body: 'Set aside the urge to speak first and the real situation appears. That understanding makes the work far easier.', quote: 'Be quick to listen, slow to speak', source: '— James 1:19' },
+      { headline: "Carry only today's portion.", body: "Don't walk carrying yesterday's regret and tomorrow's worry too. The strength given this morning is enough for today.", quote: 'They are new every morning; great is your faithfulness', source: '— Lamentations 3:23' }
+    ]
+  },
+  buddhist: {
+    faithLabel: 'Teaching of compassion',
+    faithValue: 'The wisdom and compassion of Buddhism',
+    sourceHint: 'Dhammapada, Sutta Nipata',
+    themes: ['A quiet temple / stone steps at the mountain gate', 'A courtyard guarded by an old tree', 'An ancient pagoda in the forest', 'A dark stone stupa against the sky', 'A coastal temple facing the sea'],
+    messages: [
+      { headline: 'Anger burns me while trying to protect me.', body: "Set down the thought of 'me' a little and today's quarrels are halved. Fill the emptied space with a clear mind and walk quietly to your work.", quote: 'Hatred is never appeased by hatred', source: '— Dhammapada 5' },
+      { headline: 'Guarding the mind is the greatest work today.', body: 'You cannot choose the noise outside, but you can choose the grain of the mind that receives it. Begin your first task calmly.', quote: 'Mind precedes all things; mind makes all things', source: '— Dhammapada 1' },
+      { headline: 'The lighter you are, the further you go.', body: 'The more you hold, the heavier the step. It is fine to let one thing go today; room enters where it was.', quote: 'Walk alone, like a rhinoceros horn', source: '— Sutta Nipata' },
+      { headline: "Look at your own steps before others' faults.", body: "If someone's shortcoming looms large today, it is a sign your own mind is on edge. Turn the gaze inward and the day quiets down.", quote: "The faults of others are easy to see; one's own are hard to see", source: '— Dhammapada 252' },
+      { headline: 'Put down the wish to win.', body: 'Winning leaves resentment, losing leaves pain. The moment you stop contending, the mind rests.', quote: 'Victory breeds hatred; the defeated lie down in sorrow', source: '— Dhammapada 201' },
+      { headline: "Do today's work today.", body: 'Postponed work becomes weight that presses on the day. Start with the smallest thing at hand.', quote: "Do not put off until tomorrow what should be done today", source: '— Dhammapada' }
+    ]
+  },
+  catholic: {
+    faithLabel: 'Catholic spirituality',
+    faithValue: 'Catholic spirituality and the wisdom of the saints',
+    sourceHint: 'Scripture, poems of Sr. Lee Hae-in',
+    themes: ['Stained glass and the cross / morning light in the church', 'Votive candles flickering at dawn', 'Long light in a silent cloister', 'Rose-window colour spreading at morning', 'A single beam in the dim sanctuary'],
+    messages: [
+      { headline: 'Practising smallness widens the day.', body: 'Humility is not lowering yourself; it is making room to hold another. Meet the work and the people of today with that room.', quote: 'Blessed are the poor in spirit', source: '— Matthew 5:3' },
+      { headline: "Today's load is only today's.", body: "Don't carry worries that have not arrived. Keep your mind on the one thing in front of you and the day is lighter than expected.", quote: 'Tomorrow will worry about itself', source: '— Matthew 6:34' },
+      { headline: 'Be the one who listens first.', body: 'Postpone the wish to be understood and the temperature of the conversation changes. Hearing one person out is enough today.', quote: 'Blessed are the meek', source: '— Matthew 5:5' },
+      { headline: 'A day of care in small things.', body: 'The day is not shameful for the one who does unseen work faithfully. Finish one small thing today.', quote: 'Whoever is faithful in very little is faithful also in much', source: '— Luke 16:10' },
+      { headline: 'Look once more before judging.', body: 'The speck in my own eye is never visible. When the urge to define someone rises, pause right there.', quote: 'Do not judge', source: '— Matthew 7:1' },
+      { headline: 'Strength grows inside stillness.', body: 'Busyness is not diligence. A short silence in the morning steadies the decisions of the day.', quote: 'Be still', source: '— Psalm 46:10' }
+    ]
+  },
+  secular: {
+    faithLabel: 'Classical humanities',
+    faithValue: 'Eastern and Western classical philosophy and humane insight',
+    sourceHint: 'Myeongsimbogam, Analects, Stoic philosophy',
+    themes: ['A field at first light', 'A dawn forest filled with sunlight', 'Old books and a warm candle', 'A sunlit shelf in the study', 'Morning light settling by the window'],
+    messages: [
+      { headline: 'Only by setting down pride do we learn.', body: 'Fold away what you know before the work ahead. The one who listens with a low mind goes furthest.', quote: 'To know what you know and know what you do not know — that is knowledge', source: '— Analects II.17' },
+      { headline: 'I do not spend my mind on what I cannot change.', body: 'The calm of a day usually turns here. Spend your strength on what can be changed and let the rest pass.', quote: 'People are disturbed not by things, but by the views they take of them', source: '— Epictetus, Enchiridion 5' },
+      { headline: 'Nothing grows where blame is placed.', body: 'A morning to look inward instead of aiming the arrow outward. That honesty builds the skill of the day.', quote: 'The noble person seeks it in himself; the small person seeks it in others', source: '— Analects XV.20' },
+      { headline: 'Not enduring, but letting it flow past.', body: 'A suppressed feeling does not vanish; it stays. Name it, look at it once, and it quietly passes.', quote: 'Three measures of patience will spare even a life', source: '— Myeongsimbogam' },
+      { headline: 'Compete only with yesterday.', body: 'Comparison with others has no end. Doing one thing a little better than yesterday is how skill accumulates.', quote: 'Renew yourself daily, and again daily', source: '— The Great Learning' },
+      { headline: 'The unhurried one travels far.', body: 'Some days we lose the road by rushing. Make this a morning for checking direction instead of speed.', quote: 'Desire for speed brings no attainment; an eye on small gains prevents great works', source: '— Analects XIII.17' }
+    ]
+  }
+};
+const UI_UNUSED_2 = {
+  ko: { title: '아침 메시지 설정', secular: '무교', buddhist: '불교', christian: '기독교', catholic: '천주교', value: '가치관', source: '인용 출처', theme: '배경 테마', btnTheme: '＋ 배경 테마 바꾸기', btnMsg: '＋ 문구 바꾸기', btnReset: '↺ 기본값 복원', btnResetAll: '↻ 모두 기본값으로 복원 (전체 종교)', sendOnLabel: '매일 아침 6:30 랜덤 메시지 카드 발송', sendOffLabel: '자동 발송 꺼짐', make: '오늘의 카드 만들기', made: '✓ 새 카드가 만들어졌어요 · 다시 만들기', days: ['일', '월', '화', '수', '목', '금', '토'] },
+  en: { title: 'Morning message settings', secular: 'Secular', buddhist: 'Buddhist', christian: 'Christian', catholic: 'Catholic', value: 'Values', source: 'Sources', theme: 'Backdrop', btnTheme: '＋ Change backdrop', btnMsg: '＋ Change message', btnReset: '↺ Reset', btnResetAll: '↻ Reset all faiths', sendOnLabel: 'Random card every morning at 6:30', sendOffLabel: 'Auto-send off', make: "Make today's card", made: '✓ New card created · make another', days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] }
+};
+const TAB = 'flex:1;padding:9px 0;border:0;border-radius:999px;cursor:pointer;font-family:Figtree,"Gowun Dodum",system-ui,sans-serif;font-size:12.5px;line-height:1.2;background:transparent;color:var(--color-neutral-700)';
+const TAB_ON = 'flex:1;padding:9px 0;border:0;border-radius:999px;cursor:pointer;font-family:Figtree,"Gowun Dodum",system-ui,sans-serif;font-size:12.5px;line-height:1.2;background:var(--color-accent);color:var(--color-bg);box-shadow:var(--shadow-sm)';
+const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+function toObj(css) {
+  const o = {};
+  css.split(';').forEach(d => {
+    const i = d.indexOf(':');
+    if (i < 0) return;
+    o[d.slice(0, i).trim().replace(/-([a-z])/g, (m, c) => c.toUpperCase())] = d.slice(i + 1).trim();
+  });
+  return o;
+}
+class Component extends DCLogic {
+  state = { faith: null, by: {}, sendOn: true, made: false, lang: 'ko' };
+  cur(key) { return this.state.by[key] || { t: 0, m: 0, d: 0 }; }
+  bump(key, dt, dm, dd) {
+    const c = this.cur(key);
+    const next = Object.assign({}, this.state.by);
+    next[key] = { t: c.t + dt, m: c.m + dm, d: c.d + dd };
+    this.setState({ by: next });
+  }
+  pick(k) { return () => this.setState({ faith: k, made: false }); }
+  renderVals() {
+    const key = this.state.faith || this.props.faith || 'christian';
+    const f = FAITHS[key] || FAITHS.christian;
+    const c = this.cur(key);
+    const theme = f.themes[c.t % f.themes.length];
+    const msg = f.messages[c.m % f.messages.length];
+    const d = new Date(2026, 7, 1 + c.d);
+    const dateLine = d.getFullYear() + '. ' + String(d.getMonth() + 1).padStart(2, '0') + '. ' + String(d.getDate()).padStart(2, '0') + ' · ' + DAYS[d.getDay()] + '요일';
+    const tab = k => toObj(k === key ? TAB_ON : TAB);
+    return {
+      faithLabel: f.faithLabel, faithValue: f.faithValue, sourceHint: f.sourceHint,
+      headline: msg.headline, body: msg.body, quote: msg.quote, source: msg.source,
+      photo: theme.photo, themeLine: theme.line, dateLine,
+      promptText: '매일 아침, 하루를 시작하는 성인에게 따뜻한 위로와 성장의 에너지를 전하는 희망 메시지와 아침 풍경 이미지를 생성해 주세요. 전날과 비슷한 문구·주제·톤·배경은 피해 주세요.\n\n겸손의 미덕을 강조하고, 자만과 분노를 부드럽게 다스리도록 안내해 주세요. 반성에서 끝나지 않게, 비워낸 자리에 긍정적 에너지를 채워 하루의 목표로 나아가도록 다정하게 격려해 주세요. 한글 문구는 또렷하게 렌더링해 주세요.',
+      tabSecular: tab('secular'), tabBuddhist: tab('buddhist'),
+      tabChristian: tab('christian'), tabCatholic: tab('catholic'),
+      pickSecular: this.pick('secular'), pickBuddhist: this.pick('buddhist'),
+      pickChristian: this.pick('christian'), pickCatholic: this.pick('catholic'),
+      nextTheme: () => this.bump(key, 1, 0, 0),
+      reset: () => {
+        const next = Object.assign({}, this.state.by);
+        next[key] = { t: 0, m: 0, d: 0 };
+        this.setState({ by: next, made: false });
+      },
+      toggleSend: () => this.setState(s => ({ sendOn: !s.sendOn })),
+      sendLabel: this.state.sendOn ? '매일 아침 6:30 랜덤 메시지 카드 발송' : '자동 발송 꺼짐',
+      sendOn: !this.state.sendOn,
+      trackStyle: toObj('width:40px;height:23px;border-radius:999px;flex:none;position:relative;display:inline-block;transition:background .2s;background:' + (this.state.sendOn ? 'var(--color-accent)' : 'var(--color-neutral-400)')),
+      knobStyle: toObj('position:absolute;top:3px;width:17px;height:17px;border-radius:999px;background:var(--color-bg);transition:left .2s;left:' + (this.state.sendOn ? '20px' : '3px')),
+      randomMsg: () => {
+        const n = f.messages.length;
+        let step = 1 + Math.floor(Math.random() * (n - 1));
+        this.bump(key, 0, step, 0);
+      },
+      resetAll: () => this.setState({ by: {}, made: false }),
+      makeCard: () => { this.bump(key, 1, 1, 1); this.setState({ made: true }); },
+      makeLabel: this.state.made ? '✓ 새 카드가 만들어졌어요 · 다시 만들기' : '오늘의 카드 만들기',
+      makeBtnStyle: toObj('width:100%;padding:15px 0;border:0;border-radius:999px;cursor:pointer;font-family:Caprasimo,"Gowun Batang",serif;font-size:15px;color:var(--color-bg);background:' + (this.state.made ? 'var(--color-accent-2-600)' : 'var(--color-accent)'))
+    };
+  }
+}
+</script>
+</body>
+</html>
