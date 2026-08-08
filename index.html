@@ -3,12 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
-<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
-<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<helmet data-dc-atomics><link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600;700&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
 <style>
 :root{
 --kr-heading:'Caprasimo','Gowun Batang',serif;--kr-body:'Figtree','Gowun Dodum',system-ui,sans-serif;
@@ -34,10 +32,7 @@ a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
 .dv-card{background:var(--color-bg);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden}
 .dv-opt:target .dv-oid{background:var(--color-accent);color:var(--color-bg)}
 .dv-next{margin:var(--space-6) 0 0;font:400 12.5px/1.7 var(--kr-body);color:var(--color-neutral-700)}
-</style><template id="__bundler_thumbnail" data-bg-color="#c67139">
-<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#c67139"></rect><circle cx="600" cy="420" r="150" fill="#f5ead8"></circle><rect x="585" y="200" width="30" height="180" rx="15" fill="#f5ead8"></rect></svg>
-</template>
-</helmet>
+</style></helmet>
 
 <section class="dv-turn" id="t1">
 <div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">아침 메시지 카드 — 카드 + 프롬프트 편집 (모든 컨트롤 작동)</span></div>
@@ -46,11 +41,12 @@ a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
 <div class="dv-opt" id="1a">
 <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>풀블리드 — 종교·테마·날짜에 따라 문구와 배경이 바뀝니다</div>
 <div class="dv-card" style="width:420px;box-shadow:var(--shadow-lg)">
-<div style="position:relative;width:420px;height:525px;background:var(--color-accent-900);overflow:hidden">
+<div style="position:relative;width:420px;height:525px;background:{{ bgCss }};overflow:hidden">
+<div style="position:absolute;inset:0">{{ scene }}</div>
 <div class="washed" style="position:absolute;inset:0">
-<img src="{{ photo }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
+<img src="{{ photo }}" alt="" onerror="this.parentNode.style.display='none'" style="width:100%;height:100%;object-fit:cover;display:block">
 </div>
-<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(64,35,16,.5) 0%,rgba(64,35,16,.1) 28%,rgba(64,35,16,.72) 66%,rgba(64,35,16,.95) 100%)"></div>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,18,10,.34) 0%,rgba(30,18,10,.05) 30%,rgba(30,18,10,.5) 60%,rgba(30,18,10,.9) 100%)"></div>
 <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:var(--space-6);box-sizing:border-box">
 <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-2)">
 <div style="font:400 11.5px/1 var(--kr-body);color:var(--color-accent-200);letter-spacing:.16em">{{ dateLine }}</div>
@@ -90,9 +86,7 @@ a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
 </div>
 <div style="display:flex;gap:var(--space-2)">
 <button onClick="{{ nextTheme }}" style="flex:1;padding:10px 0;border:1px solid var(--color-divider);border-radius:999px;background:transparent;cursor:pointer;font:400 11.5px/1.2 var(--kr-body);color:var(--color-text)">＋ 배경 테마 바꾸기</button>
-<sc-if value="{{ sendOn }}" hint-placeholder-val="{{ true }}">
-<button onClick="{{ randomMsg }}" style="flex:1;padding:10px 0;border:1px solid var(--color-divider);border-radius:999px;background:transparent;cursor:pointer;font:400 11.5px/1.2 var(--kr-body);color:var(--color-text)">＋ 문구 바꾸기</button>
-</sc-if>
+<sc-if value="{{ showManual }}"><button onClick="{{ randomMsg }}" style="flex:1;padding:10px 0;border:1px solid var(--color-divider);border-radius:999px;background:transparent;cursor:pointer;font:400 11.5px/1.2 var(--kr-body);color:var(--color-text)">＋ 문구 바꾸기</button></sc-if>
 <button onClick="{{ reset }}" style="flex:1;padding:10px 0;border:1px solid var(--color-divider);border-radius:999px;background:transparent;cursor:pointer;font:400 11.5px/1.2 var(--kr-body);color:var(--color-text)">↺ 기본값 복원</button>
 </div>
 <button onClick="{{ resetAll }}" style="padding:10px 0;border:1px solid var(--color-divider);border-radius:999px;background:transparent;cursor:pointer;font:400 11.5px/1.2 var(--kr-body);color:var(--color-text)">↻ 모두 기본값으로 복원 (전체 종교)</button>
@@ -102,9 +96,7 @@ a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
 <span>{{ sendLabel }}</span>
 <span style="{{ trackStyle }}"><span style="{{ knobStyle }}"></span></span>
 </div>
-<sc-if value="{{ sendOn }}" hint-placeholder-val="{{ true }}">
-<button onClick="{{ makeCard }}" style="{{ makeBtnStyle }}">{{ makeLabel }}</button>
-</sc-if>
+<sc-if value="{{ showManual }}"><button onClick="{{ makeCard }}" style="{{ makeBtnStyle }}">{{ makeLabel }}</button></sc-if>
 </div>
 </div>
 </div>
@@ -147,7 +139,11 @@ const FAITHS = {
       { line: '스테인드글라스로 스미는 색빛', photo: P.stained },
       { line: '새벽 기도 뒤 텅 빈 나무 회중석', photo: P.pews },
       { line: '긴 통로 끝으로 번지는 아침 빛', photo: P.aisle },
-      { line: '창을 넘어 쏟아지는 빛줄기', photo: P.rays }
+      { line: '창을 넘어 쏟아지는 빛줄기', photo: P.rays },
+      { line: '고요한 회랑에 길게 드는 아침 빛', photo: P.nave },
+      { line: '어둑한 예배당에 스미는 한 줄기 빛', photo: P.darkNave },
+      { line: '창가에 내려앉은 이른 아침 햇빛', photo: P.windowLight },
+      { line: '여명이 스미는 새벽 숲', photo: P.mist }
     ],
     messages: [
       { headline: '내가 옳다는 마음이 올라올 때, 한 걸음 물러섭니다.', body: '오늘 누군가의 말에 마음이 먼저 뜨거워진다면, 대답 대신 숨을 한 번 고르세요. 낮아진 자리에 빛이 머물고, 그 자리에서 하루의 일이 다시 또렷해집니다.', quote: '교만은 패망의 선봉이요 거만한 마음은 넘어짐의 앞잡이니라', source: '— ⟪잠언⟫ 16장 18절' },
@@ -155,7 +151,11 @@ const FAITHS = {
       { headline: '비교를 내려놓으면 오늘이 넉넉해집니다.', body: '누구의 속도와도 겨루지 않기로 하는 아침. 어제의 나보다 한 뼘이면 충분합니다. 그 걸음으로 오늘의 몫을 조용히 해내세요.', quote: '마음의 즐거움은 양약이라도 심령의 근심은 뼈를 마르게 하느니라', source: '— ⟪잠언⟫ 17장 22절' },
       { headline: '내 계획을 쥔 손에 힘을 조금 뺍니다.', body: '뜻대로 되지 않는 일 앞에서 조급함이 올라오면, 오늘 할 수 있는 한 가지만 정하세요. 그 한 가지가 하루를 지탱합니다.', quote: '사람이 마음으로 자기의 길을 계획할지라도 그의 걸음을 인도하시는 이는 여호와시니라', source: '— ⟪잠언⟫ 16장 9절' },
       { headline: '듣는 귀 하나가 하루를 바꿉니다.', body: '먼저 말하려는 마음을 잠시 접어두면, 상대의 진짜 사정이 보입니다. 그 이해가 오늘의 일을 훨씬 수월하게 만듭니다.', quote: '듣기는 속히 하고 말하기는 더디 하라', source: '— ⟪야고보서⟫ 1장 19절' },
-      { headline: '오늘 하루치의 마음만 챙깁니다.', body: '어제의 후회와 내일의 불안을 함께 지고 걷지 마세요. 아침에 받은 힘은 오늘 몫으로 충분합니다.', quote: '이는 아침마다 새로우니 주의 성실하심이 크시도소이다', source: '— ⟪예레미야애가⟫ 3장 23절' }
+      { headline: '오늘 하루치의 마음만 챙깁니다.', body: '어제의 후회와 내일의 불안을 함께 지고 걷지 마세요. 아침에 받은 힘은 오늘 몫으로 충분합니다.', quote: '이는 아침마다 새로우니 주의 성실하심이 크시도소이다', source: '— ⟪예레미야애가⟫ 3장 23절' },
+      { headline: '뜨거워진 말은 한 박자 식혀 보냅니다.', body: '거친 대답이 목까지 차오를 때, 부드러운 한마디로 바꿔 보세요. 격해진 공기가 가라앉으면 마음에 차분한 힘이 들어서고, 그 힘으로 오늘 할 일을 다시 잡을 수 있습니다.', quote: '유순한 대답은 분노를 쉬게 하여도 과격한 말은 노를 격동하느니라', source: '— ⟪잠언⟫ 15장 1절' },
+      { headline: '작은 일 하나에 마음을 다해 봅니다.', body: '눈에 띄지 않는 일이라도 정성으로 해내는 손끝에서 하루가 단단해집니다. 오늘의 한 가지를 마음 다해 끝까지 해보세요.', quote: '무슨 일을 하든지 마음을 다하여 주께 하듯 하고 사람에게 하듯 하지 말라', source: '— ⟪골로새서⟫ 3장 23절' },
+      { headline: '염려는 내려놓고 걸음은 가볍게.', body: '아직 오지 않은 걱정을 미리 짊어지지 마세요. 무거운 마음을 한 번 내려놓고 나면, 오늘의 첫 일로 향하는 발걸음이 한결 가벼워집니다.', quote: '너희 염려를 다 주께 맡기라 이는 그가 너희를 돌보심이라', source: '— ⟪베드로전서⟫ 5장 7절' },
+      { headline: '지친 아침에도 새 힘은 옵니다.', body: '기운이 바닥난 것 같은 날에도 하루를 여는 힘은 다시 채워집니다. 그 힘을 믿고 오늘의 걸음을 시작해 보세요.', quote: '오직 여호와를 앙망하는 자는 새 힘을 얻으리니 독수리가 날개치며 올라감 같을 것이요', source: '— ⟪이사야⟫ 40장 31절' }
     ]
   },
   buddhist: {
@@ -167,7 +167,11 @@ const FAITHS = {
       { line: '큰 나무가 지키는 산사의 마당', photo: P.hanok },
       { line: '숲속에 선 오래된 탑', photo: P.pagoda },
       { line: '하늘로 솟은 검은 석탑', photo: P.stupa },
-      { line: '바다를 마주한 해안 사찰', photo: P.seaTemple }
+      { line: '바다를 마주한 해안 사찰', photo: P.seaTemple },
+      { line: '물안개 피어오르는 새벽 숲', photo: P.mist },
+      { line: '여명이 밝아오는 산자락 들녘', photo: P.field },
+      { line: '볕이 드는 서고에 놓인 오래된 경전', photo: P.library },
+      { line: '낡은 경전과 은은한 촛불', photo: P.books }
     ],
     messages: [
       { headline: '화는 나를 지키려다 나를 태웁니다.', body: "'나'라는 생각을 조금 내려놓으면 오늘의 다툼은 절반으로 줄어듭니다. 비워낸 자리에 맑은 마음을 채우고, 해야 할 일로 조용히 걸어가세요.", quote: '원한은 원한으로는 결코 풀리지 않는다', source: '— ⟪법구경⟫ 쌍서품 5게' },
@@ -175,7 +179,11 @@ const FAITHS = {
       { headline: '가벼워질수록 멀리 갑니다.', body: '쥐고 있는 것이 많을수록 걸음은 무거워집니다. 오늘 하나쯤은 놓아도 괜찮습니다. 그 자리에 여유가 들어섭니다.', quote: '홀로 가라, 무소의 뿔처럼', source: '— ⟪숫타니파타⟫ 무소의 뿔' },
       { headline: '남의 허물보다 내 걸음을 먼저 봅니다.', body: '오늘 누군가의 부족함이 크게 보인다면, 그만큼 내 마음이 곤두서 있다는 신호입니다. 시선을 안으로 돌리면 하루가 조용해집니다.', quote: '남의 허물은 보기 쉬우나 자기의 허물은 보기 어렵다', source: '— ⟪법구경⟫ 진구품 252게' },
       { headline: '이기려는 마음을 내려놓습니다.', body: '이기면 원한을 남기고, 지면 괴로움이 남습니다. 다투지 않기로 하는 순간 오늘의 마음은 편안해집니다.', quote: '승리는 원한을 낳고 패자는 괴로움 속에 눕는다', source: '— ⟪법구경⟫ 안락품 201게' },
-      { headline: '오늘 할 일을 오늘 합니다.', body: '미룬 일은 마음의 무게가 되어 하루를 누릅니다. 지금 손에 잡히는 가장 작은 일부터 시작해 보세요.', quote: '오늘 할 일을 내일로 미루지 말라', source: '— ⟪법구경⟫ 도장품' }
+      { headline: '오늘 할 일을 오늘 합니다.', body: '미룬 일은 마음의 무게가 되어 하루를 누릅니다. 지금 손에 잡히는 가장 작은 일부터 시작해 보세요.', quote: '오늘 할 일을 내일로 미루지 말라', source: '— ⟪법구경⟫ 도장품' },
+      { headline: '오늘을 깨어서 삽니다.', body: '게으름은 하루를 조용히 흘려보내고, 부지런함은 하루를 살아 있게 합니다. 지금 이 순간에 마음을 두고 첫 일을 시작해 보세요.', quote: '부지런함은 죽지 않는 길이요, 게으름은 죽음의 길이다', source: '— ⟪법구경⟫ 불방일품 21게' },
+      { headline: '남을 다스리기 전에 나를 다룹니다.', body: '가장 다루기 어려운 것은 언제나 내 마음입니다. 오늘 흔들리는 마음 한 자락을 곧게 펴는 것으로 하루가 반듯해집니다.', quote: '물 대는 이는 물을 끌고, 화살 만드는 이는 화살을 곧게 하며, 지혜로운 이는 자신을 다스린다', source: '— ⟪법구경⟫ 현철품 80게' },
+      { headline: '성냄은 따뜻함으로 녹입니다.', body: '화를 화로 갚으면 불씨만 커집니다. 오늘 한 사람에게만이라도 부드러움으로 답해 보세요. 그 온기가 도리어 나를 지켜 줍니다.', quote: '성냄이 없음으로 성냄을 이기고, 착함으로 악을 이기라', source: '— ⟪법구경⟫ 분노품 223게' },
+      { headline: '지금 여기의 일에 마음을 둡니다.', body: '지나간 일을 좇지 않고 오지 않은 일을 미리 걱정하지 않기로 하는 아침. 눈앞의 이 한 가지에 마음을 모으면 하루가 또렷해집니다.', quote: '지나간 것을 따르지 말고 오지 않은 것을 바라지 말라. 다만 지금 여기 있는 것을 살피라', source: '— ⟪맛지마니까야⟫ 「한 밤의 슬기로운 님 경」' }
     ]
   },
   catholic: {
@@ -187,7 +195,11 @@ const FAITHS = {
       { line: '봉헌초가 흔들리는 새벽 성당', photo: P.candles },
       { line: '고요한 회랑에 드는 긴 빛', photo: P.nave },
       { line: '장미창의 색빛이 번지는 아침', photo: P.rose },
-      { line: '어둑한 성당에 스미는 한 줄기 빛', photo: P.darkNave }
+      { line: '어둑한 성당에 스미는 한 줄기 빛', photo: P.darkNave },
+      { line: '스테인드글라스로 물드는 새벽빛', photo: P.stained },
+      { line: '십자가 위로 아침 햇살이 드는 소성당', photo: P.chapel },
+      { line: '제대를 향한 긴 통로에 번지는 빛', photo: P.aisle },
+      { line: '높은 창에서 쏟아지는 아침 빛줄기', photo: P.rays }
     ],
     messages: [
       { headline: '작아지는 연습이 하루를 넓힙니다.', body: '겸손은 나를 낮추는 일이 아니라, 다른 이를 담을 자리를 만드는 일입니다. 그 넉넉함으로 오늘의 일과 사람을 마주해 보세요.', quote: '마음이 가난한 사람은 행복하다', source: '— ⟪마태오 복음⟫ 5장 3절' },
@@ -195,7 +207,11 @@ const FAITHS = {
       { headline: '먼저 듣는 사람이 되어 보세요.', body: '이해받고 싶은 마음을 잠시 뒤로 미루면 대화의 온도가 달라집니다. 오늘 한 사람의 말을 끝까지 들어주는 것으로 충분합니다.', quote: '온유한 사람은 행복하다', source: '— ⟪마태오 복음⟫ 5장 5절' },
       { headline: '작은 일에 정성을 들이는 하루.', body: '눈에 띄지 않는 일을 성실히 해내는 사람에게 하루는 부끄럽지 않습니다. 오늘의 사소한 한 가지를 끝까지 해보세요.', quote: '아주 작은 일에 성실한 사람은 큰 일에도 성실하다', source: '— ⟪루카 복음⟫ 16장 10절' },
       { headline: '판단하기 전에 한 번 더 바라봅니다.', body: '내 눈의 티는 늘 보이지 않습니다. 오늘 누군가를 규정하려는 마음이 들면, 그 자리에서 잠시 멈춰 서세요.', quote: '남을 심판하지 마라', source: '— ⟪마태오 복음⟫ 7장 1절' },
-      { headline: '고요함 속에서 힘이 자랍니다.', body: '분주함이 성실함은 아닙니다. 아침의 짧은 침묵이 하루의 결정을 단단하게 만듭니다.', quote: '너희는 잠잠히 있어라', source: '— ⟪시편⟫ 46편 10절' }
+      { headline: '고요함 속에서 힘이 자랍니다.', body: '분주함이 성실함은 아닙니다. 아침의 짧은 침묵이 하루의 결정을 단단하게 만듭니다.', quote: '너희는 잠잠히 있어라', source: '— ⟪시편⟫ 46편 10절' },
+      { headline: '다툼의 자리에 평화를 놓아 봅니다.', body: '옳고 그름을 가리기 전에, 이 자리를 평화롭게 할 방법을 먼저 떠올려 보세요. 그 마음이 오늘의 관계와 일을 부드럽게 이끕니다.', quote: '평화를 이루는 사람은 행복하다', source: '— ⟪마태오 복음⟫ 5장 9절' },
+      { headline: '한 번 더 참고, 한 번 더 다정하게.', body: '급한 마음이 올라올 때 잠시 기다려 주는 것, 그것이 사랑의 얼굴입니다. 오늘 만나는 이에게 조금 더 너그러운 하루가 되어 보세요.', quote: '사랑은 참고 기다립니다. 사랑은 친절합니다', source: '— ⟪코린토 1서⟫ 13장 4절' },
+      { headline: '받고 싶은 대로, 먼저 건넵니다.', body: '내가 바라는 친절을 오늘 먼저 내어놓아 보세요. 작은 배려 하나가 하루의 공기를 따뜻하게 바꿉니다.', quote: '남이 너희에게 해 주기를 바라는 그대로 너희도 남에게 해 주어라', source: '— ⟪마태오 복음⟫ 7장 12절' },
+      { headline: '무거운 짐은 잠시 내려놓아도 됩니다.', body: '혼자 다 지고 가려는 마음을 아침에 한 번 내려놓으세요. 가벼워진 어깨로 다시 하루의 일을 향해 나아가면 됩니다.', quote: '고생하며 무거운 짐을 진 너희는 모두 나에게 오너라. 내가 너희에게 안식을 주겠다', source: '— ⟪마태오 복음⟫ 11장 28절' }
     ]
   },
   secular: {
@@ -207,7 +223,11 @@ const FAITHS = {
       { line: '햇살이 스미는 새벽 숲', photo: P.mist },
       { line: '오래된 책과 따뜻한 촛불', photo: P.books },
       { line: '햇살이 비치는 서재의 책장', photo: P.library },
-      { line: '창가에 내려앉은 아침 햇빛', photo: P.windowLight }
+      { line: '창가에 내려앉은 아침 햇빛', photo: P.windowLight },
+      { line: '숲 사이로 쏟아지는 아침 빛줄기', photo: P.rays },
+      { line: '빛이 스미는 오래된 돌 회랑', photo: P.aisle },
+      { line: '긴 빛이 드는 고요한 옛 건축', photo: P.nave },
+      { line: '큰 나무가 선 고요한 옛 마당', photo: P.hanok }
     ],
     messages: [
       { headline: '자존심을 내려놓아야 비로소 배웁니다.', body: '오늘 마주할 일 앞에서 내가 아는 것을 잠시 접어두세요. 낮은 마음으로 듣는 사람이 결국 가장 멀리 갑니다.', quote: '아는 것을 안다 하고 모르는 것을 모른다 하는 것, 이것이 아는 것이다', source: '— ⟪논어⟫ 위정편 17장' },
@@ -215,7 +235,11 @@ const FAITHS = {
       { headline: '남을 탓하는 자리에서는 아무것도 자라지 않습니다.', body: '화살을 밖으로 돌리는 대신 안을 살피는 아침. 그 정직함이 오늘의 실력을 만듭니다.', quote: '군자는 자기에게서 구하고, 소인은 남에게서 구한다', source: '— ⟪논어⟫ 위령공편 20장' },
       { headline: '참는 것이 아니라, 흘려보내는 것입니다.', body: '억누른 감정은 사라지지 않고 남습니다. 이름을 붙여 한 번 바라보고 나면, 그 감정은 조용히 지나갑니다.', quote: '참을 인(忍) 자 셋이면 살인도 피한다', source: '— ⟪명심보감⟫ 계성편' },
       { headline: '어제의 나와만 겨룹니다.', body: '남과의 비교는 끝이 없습니다. 오늘 한 가지를 어제보다 조금 낫게 하는 것, 그것이 실력이 쌓이는 방식입니다.', quote: '날마다 새롭게 하고, 또 날마다 새롭게 하라', source: '— ⟪대학⟫ 전 2장' },
-      { headline: '서두르지 않는 사람이 멀리 갑니다.', body: '빨리 가려다 길을 잃는 날이 있습니다. 오늘은 속도 대신 방향을 확인하는 아침으로 삼아 보세요.', quote: '빨리 하려 하면 이루지 못하고, 작은 이익을 보면 큰 일을 이루지 못한다', source: '— ⟪논어⟫ 자로편 17장' }
+      { headline: '서두르지 않는 사람이 멀리 갑니다.', body: '빨리 가려다 길을 잃는 날이 있습니다. 오늘은 속도 대신 방향을 확인하는 아침으로 삼아 보세요.', quote: '빨리 하려 하면 이루지 못하고, 작은 이익을 보면 큰 일을 이루지 못한다', source: '— ⟪논어⟫ 자로편 17장' },
+      { headline: '좋은 생각으로 하루를 물들입니다.', body: '마음이 어떤 빛깔이냐에 따라 하루의 색이 정해집니다. 아침의 첫 생각을 다정하고 단정한 쪽으로 골라 보세요.', quote: '영혼은 그 생각의 빛깔로 물든다', source: '— 마르쿠스 아우렐리우스, ⟪명상록⟫ 5권' },
+      { headline: '고치는 용기가 곧 실력입니다.', body: '누구나 잘못은 합니다. 다만 그것을 고치려는 사람만이 앞으로 나아갑니다. 오늘 마주한 작은 실수 하나를 담담히 바로잡아 보세요.', quote: '잘못하고도 고치지 않는 것, 이것을 진짜 잘못이라 한다', source: '— ⟪논어⟫ 위령공편 29장' },
+      { headline: '물처럼, 이롭게 하되 다투지 않습니다.', body: '가장 강한 것은 자기를 낮추어 흐르는 물입니다. 오늘은 겨루기보다 스며드는 마음으로 사람과 일을 대해 보세요.', quote: '가장 훌륭한 것은 물과 같다. 물은 만물을 이롭게 하면서도 다투지 않는다', source: '— ⟪도덕경⟫ 8장' },
+      { headline: '큰 목표도 첫걸음에서 시작됩니다.', body: '멀게만 보이는 일도 결국 오늘의 한 걸음에서 열립니다. 완벽한 준비를 기다리지 말고, 지금 할 수 있는 가장 작은 한 걸음을 떼어 보세요.', quote: '천 리 길도 발밑에서 시작된다', source: '— ⟪도덕경⟫ 64장' }
     ]
   }
 };
@@ -348,6 +372,66 @@ const UI_UNUSED_2 = {
 const TAB = 'flex:1;padding:9px 0;border:0;border-radius:999px;cursor:pointer;font-family:Figtree,"Gowun Dodum",system-ui,sans-serif;font-size:12.5px;line-height:1.2;background:transparent;color:var(--color-neutral-700)';
 const TAB_ON = 'flex:1;padding:9px 0;border:0;border-radius:999px;cursor:pointer;font-family:Figtree,"Gowun Dodum",system-ui,sans-serif;font-size:12.5px;line-height:1.2;background:var(--color-accent);color:var(--color-bg);box-shadow:var(--shadow-sm)';
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+function mkGrads(tops, mid, bot) { return tops.map(t => 'linear-gradient(165deg,' + t + ' 0%,' + mid + ' 48%,' + bot + ' 100%)'); }
+const GRAD = {
+  christian: mkGrads(['#f7cf9a', '#f2c17e', '#e9b06a', '#f4d3a0', '#eab879', '#f6c68a', '#e7a866', '#f0c184', '#f9dcae'], '#c67139', '#3d220f'),
+  buddhist: mkGrads(['#c3d8b6', '#b4cfa4', '#a7c795', '#cbe0bd', '#b0cc9e', '#bdd6ac', '#9dbf8c', '#c8ddba', '#d4e6c6'], '#5f7a52', '#26301f'),
+  catholic: mkGrads(['#e7b6cd', '#d9a7c6', '#c99ac0', '#e3b9d2', '#cfa0c4', '#dbb0cc', '#c294bb', '#e6c0d6', '#d4a9c8'], '#7c5a86', '#2c1b33'),
+  secular: mkGrads(['#f0d6a6', '#ecc98e', '#e6bd7a', '#f2dcae', '#e8c384', '#eed09a', '#e0b36e', '#f0d3a0', '#f6e2ba'], '#a9834f', '#2f2417')
+};
+
+// --- religion-specific SVG backdrops (self-contained, natural render) ---
+const PAL = {
+  christian:{sky:[['0','#d99a58'],['0.45','#c67a3c'],['0.78','#7e4423'],['1','#331d0d']],sun:'#ffe6bd',mt:'#4a2e18',mb:'#1a0c04',deep:'#2c1809'},
+  catholic:{sky:[['0','#c79bb6'],['0.45','#9b729a'],['0.78','#5d4470'],['1','#20122a']],sun:'#f6e2ef',mt:'#3a2140',mb:'#150915',deep:'#241026'},
+  buddhist:{sky:[['0','#b9cfa6'],['0.45','#8fae7c'],['0.78','#566d4a'],['1','#1c2616']],sun:'#eef6df',mt:'#293a1c',mb:'#0d1507',deep:'#182210'},
+  secular:{sky:[['0','#e6c185'],['0.45','#c99a5c'],['0.78','#8a6236'],['1','#211710']],sun:'#ffedcb',mt:'#41301a',mb:'#150e08',deep:'#241a10'}
+};
+function sky(p){
+  const st=p.sky.map(s=>`<stop offset="${s[0]}" stop-color="${s[1]}"/>`).join('');
+  return `<defs>`
+  +`<linearGradient id="sk" x1="0" y1="0" x2="0" y2="1">${st}</linearGradient>`
+  +`<radialGradient id="sn" cx="0.5" cy="0.33" r="0.6"><stop offset="0" stop-color="${p.sun}" stop-opacity="0.85"/><stop offset="0.35" stop-color="${p.sun}" stop-opacity="0.3"/><stop offset="1" stop-color="${p.sun}" stop-opacity="0"/></radialGradient>`
+  +`<linearGradient id="mo" gradientUnits="userSpaceOnUse" x1="0" y1="60" x2="0" y2="420"><stop offset="0" stop-color="${p.mt}"/><stop offset="1" stop-color="${p.mb}"/></linearGradient>`
+  +`<linearGradient id="hz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.sun}" stop-opacity="0"/><stop offset="1" stop-color="${p.sun}" stop-opacity="0.28"/></linearGradient>`
+  +`<radialGradient id="vg" cx="0.5" cy="0.42" r="0.75"><stop offset="0.55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient>`
+  +`<filter id="sf" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>`
+  +`<filter id="sf2" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="16"/></filter>`
+  +`</defs>`
+  +`<rect width="420" height="525" fill="url(#sk)"/>`
+  +`<ellipse cx="210" cy="168" rx="150" ry="128" fill="${p.sun}" opacity="0.5" filter="url(#sf2)"/>`
+  +`<rect width="420" height="525" fill="url(#sn)"/>`
+  +`<rect x="0" y="235" width="420" height="220" fill="url(#hz)"/>`;
+}
+function vig(){return `<rect width="420" height="525" fill="url(#vg)"/>`;}
+function ground(p,y){return `<path d="M0 ${y} C130 ${y-22} 290 ${y-22} 420 ${y} L420 525 L0 525Z" fill="${p.deep}"/><rect x="0" y="${y-14}" width="420" height="34" fill="${p.sun}" opacity="0.10" filter="url(#sf)"/>`;}
+function halo(){return `<ellipse cx="210" cy="150" rx="120" ry="96" fill="#fff" opacity="0.10" filter="url(#sf2)"/>`;}
+function svg(inner){return `<svg viewBox="0 0 420 525" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;display:block">${inner}</svg>`;}
+
+function mChapel(p){return halo()+ground(p,360)+`<g fill="url(#mo)"><rect x="160" y="150" width="100" height="210"/><polygon points="150,150 210,104 270,150"/><rect x="198" y="66" width="24" height="40"/><polygon points="192,68 210,42 228,68"/><rect x="206" y="14" width="8" height="28"/><rect x="196" y="24" width="28" height="8"/></g><rect x="196" y="248" width="28" height="112" rx="14" fill="${p.mb}"/><circle cx="184" cy="196" r="12" fill="${p.sun}" opacity="0.6"/><circle cx="236" cy="196" r="12" fill="${p.sun}" opacity="0.6"/>`;}
+function mCross(p){return halo()+ground(p,360)+`<g fill="url(#mo)"><rect x="199" y="60" width="22" height="300"/><rect x="160" y="126" width="100" height="22"/></g>`;}
+function mArch(p){return halo()+`<g><path d="M146 360 L146 150 A64 64 0 0 1 274 150 L274 360 Z" fill="url(#mo)"/><path d="M158 355 L158 152 A52 52 0 0 1 262 152 L262 355 Z" fill="${p.sun}" opacity="0.6"/><rect x="205" y="152" width="10" height="203" fill="url(#mo)"/><rect x="158" y="210" width="104" height="10" fill="url(#mo)"/></g>`+ground(p,360);}
+function mCathedral(p){return halo()+ground(p,368)+`<g fill="url(#mo)"><rect x="112" y="150" width="44" height="218"/><polygon points="110,150 134,104 158,150"/><rect x="264" y="150" width="44" height="218"/><polygon points="262,150 286,104 310,150"/><rect x="168" y="184" width="84" height="184"/><polygon points="166,184 210,132 254,184"/><rect x="204" y="86" width="12" height="30"/><rect x="196" y="94" width="28" height="10"/></g><rect x="196" y="256" width="28" height="112" rx="14" fill="${p.mb}"/>`;}
+function mRose(p){let s=halo()+`<circle cx="210" cy="150" r="90" fill="url(#mo)"/><circle cx="210" cy="150" r="78" fill="#140a18"/>`;const c=['#c34f66','#4a6fb0','#cf9f34','#4f9d6b','#9b57a1','#d5772f'];for(let i=0;i<12;i++){const a=i/12*Math.PI*2;const x=210+Math.cos(a)*50,y=150+Math.sin(a)*50;s+=`<line x1="210" y1="150" x2="${(210+Math.cos(a)*78).toFixed(1)}" y2="${(150+Math.sin(a)*78).toFixed(1)}" stroke="url(#mo)" stroke-width="6"/>`;s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="15" fill="${c[i%6]}" opacity="0.92"/>`;}s+=`<circle cx="210" cy="150" r="78" fill="none" stroke="url(#mo)" stroke-width="8"/><circle cx="210" cy="150" r="20" fill="${c[0]}"/><circle cx="210" cy="150" r="20" fill="none" stroke="url(#mo)" stroke-width="6"/>`;return s+ground(p,380);}
+function mCandles(p){let s=halo()+ground(p,372);for(const x of [150,194,238,282]){s+=`<rect x="${x}" y="150" width="18" height="222" rx="3" fill="url(#mo)"/>`;s+=`<ellipse cx="${x+9}" cy="126" rx="16" ry="26" fill="${p.sun}" opacity="0.4" filter="url(#sf)"/>`;s+=`<rect x="${x+7}" y="136" width="4" height="16" fill="${p.mb}"/><ellipse cx="${x+9}" cy="128" rx="7" ry="15" fill="${p.sun}"/><ellipse cx="${x+9}" cy="132" rx="3.5" ry="8" fill="#fff" opacity="0.85"/>`;}return s;}
+function mPagoda(p){let s=halo()+ground(p,368)+`<g fill="url(#mo)">`;let cy=310,w=158;for(let i=0;i<4;i++){s+=`<polygon points="${210-w/2-10},${cy} ${210+w/2+10},${cy} ${210+w/2-16},${cy-18} ${210-w/2+16},${cy-18}"/>`;s+=`<rect x="${210-(w-46)/2}" y="${cy-42}" width="${w-46}" height="24"/>`;cy-=46;w-=30;}s+=`<rect x="204" y="${cy-4}" width="12" height="18"/><circle cx="210" cy="${cy-8}" r="7"/></g>`;return s;}
+function mGate(p){return halo()+ground(p,368)+`<g fill="url(#mo)"><rect x="150" y="150" width="20" height="218"/><rect x="250" y="150" width="20" height="218"/><rect x="130" y="134" width="160" height="18"/><polygon points="116,136 304,136 270,96 150,96"/><polygon points="138,98 282,98 210,66"/></g>`;}
+function mStupa(p){return halo()+ground(p,372)+`<g fill="url(#mo)"><path d="M150 300 Q210 150 270 300 Z"/><rect x="190" y="230" width="40" height="18"/><rect x="203" y="150" width="14" height="82"/><circle cx="210" cy="146" r="11"/></g>`;}
+function mSunField(p){return `<ellipse cx="210" cy="150" rx="74" ry="74" fill="${p.sun}" opacity="0.55" filter="url(#sf)"/><circle cx="210" cy="150" r="48" fill="${p.sun}" opacity="0.95"/><path d="M0 320 C120 292 300 292 420 320 L420 380 L0 380Z" fill="${p.deep}" opacity="0.55"/>`+ground(p,384);}
+function mBooks(p){return halo()+ground(p,360)+`<rect x="132" y="214" width="156" height="8" rx="2" fill="url(#mo)"/><g><rect x="146" y="192" width="140" height="22" rx="3" fill="#8a5a3a"/><rect x="156" y="170" width="124" height="22" rx="3" fill="#6f7a4e"/><rect x="150" y="148" width="132" height="22" rx="3" fill="#9a6b45"/></g><ellipse cx="303" cy="142" rx="12" ry="20" fill="${p.sun}" opacity="0.4" filter="url(#sf)"/><rect x="296" y="150" width="14" height="64" fill="url(#mo)"/><ellipse cx="303" cy="144" rx="5" ry="12" fill="${p.sun}"/>`;}
+function mMountains(p){return `<ellipse cx="300" cy="140" rx="60" ry="60" fill="${p.sun}" opacity="0.5" filter="url(#sf)"/><circle cx="300" cy="140" r="38" fill="${p.sun}" opacity="0.9"/><polygon points="0,360 120,180 210,300 300,168 420,360" fill="${p.mt}" opacity="0.7"/><polygon points="0,430 140,270 260,360 420,250 420,430" fill="${p.deep}"/><rect x="0" y="420" width="420" height="105" fill="${p.deep}"/>`;}
+function mForest(p){let s=halo()+ground(p,360);[120,175,230,285,325].forEach((x,i)=>{const h=150+(i%3)*24,y=352;s+=`<polygon points="${x},${y-h} ${x-28},${y} ${x+28},${y}" fill="url(#mo)"/><polygon points="${x},${y-h-16} ${x-22},${y-h+34} ${x+22},${y-h+34}" fill="url(#mo)"/><rect x="${x-4}" y="${y}" width="8" height="12" fill="url(#mo)"/>`;});return s;}
+function mWindow(p){return `<polygon points="150,120 270,120 336,525 84,525" fill="${p.sun}" opacity="0.16"/><g><rect x="150" y="90" width="120" height="200" fill="url(#mo)"/><rect x="160" y="100" width="100" height="180" fill="${p.sun}" opacity="0.6"/><rect x="205" y="100" width="10" height="180" fill="url(#mo)"/><rect x="160" y="182" width="100" height="10" fill="url(#mo)"/></g>`+ground(p,360);}
+function mTree(p){return halo()+ground(p,360)+`<g fill="url(#mo)"><rect x="203" y="176" width="14" height="184"/><circle cx="210" cy="150" r="52"/><circle cx="172" cy="172" r="36"/><circle cx="248" cy="172" r="36"/><circle cx="210" cy="196" r="40"/></g>`;}
+
+const SCENES = {
+  christian:[mChapel,mCross,mArch,mCathedral,mSunField,mWindow],
+  catholic:[mRose,mCathedral,mCandles,mArch,mCross,mWindow],
+  buddhist:[mPagoda,mGate,mStupa,mMountains,mSunField,mForest],
+  secular:[mSunField,mBooks,mMountains,mForest,mWindow,mTree]
+};
+function buildScene(key,idx){const p=PAL[key]||PAL.christian;const arr=SCENES[key]||SCENES.christian;return svg(sky(p)+arr[idx%arr.length](p)+vig());}
+
 function toObj(css) {
   const o = {};
   css.split(';').forEach(d => {
@@ -373,13 +457,17 @@ class Component extends DCLogic {
     const c = this.cur(key);
     const theme = f.themes[c.t % f.themes.length];
     const msg = f.messages[c.m % f.messages.length];
-    const d = new Date(2026, 7, 1 + c.d);
+    const now = new Date();
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + c.d);
     const dateLine = d.getFullYear() + '. ' + String(d.getMonth() + 1).padStart(2, '0') + '. ' + String(d.getDate()).padStart(2, '0') + ' · ' + DAYS[d.getDay()] + '요일';
     const tab = k => toObj(k === key ? TAB_ON : TAB);
     return {
       faithLabel: f.faithLabel, faithValue: f.faithValue, sourceHint: f.sourceHint,
       headline: msg.headline, body: msg.body, quote: msg.quote, source: msg.source,
       photo: theme.photo, themeLine: theme.line, dateLine,
+      bgCss: (GRAD[key] || GRAD.christian)[c.t % (GRAD[key] || GRAD.christian).length],
+      scene: buildScene(key, c.t),
+      showManual: !this.state.sendOn,
       promptText: '매일 아침, 하루를 시작하는 성인에게 따뜻한 위로와 성장의 에너지를 전하는 희망 메시지와 아침 풍경 이미지를 생성해 주세요. 전날과 비슷한 문구·주제·톤·배경은 피해 주세요.\n\n겸손의 미덕을 강조하고, 자만과 분노를 부드럽게 다스리도록 안내해 주세요. 반성에서 끝나지 않게, 비워낸 자리에 긍정적 에너지를 채워 하루의 목표로 나아가도록 다정하게 격려해 주세요. 한글 문구는 또렷하게 렌더링해 주세요.',
       tabSecular: tab('secular'), tabBuddhist: tab('buddhist'),
       tabChristian: tab('christian'), tabCatholic: tab('catholic'),
@@ -409,5 +497,52 @@ class Component extends DCLogic {
   }
 }
 </script>
+
+<script>
+(function(){
+  class DCLogic{
+    constructor(){ this.props={}; }
+    setState(patch){
+      const next=(typeof patch==='function')?patch(this.state):patch;
+      this.state=Object.assign({},this.state,next);
+      if(this.__render) this.__render();
+    }
+  }
+  const scriptEl=document.querySelector('script[type="text/x-dc"]');
+  const Component=(new Function('DCLogic', scriptEl.textContent+'\nreturn Component;'))(DCLogic);
+  const inst=new Component();
+  const kebab=k=>k.replace(/[A-Z]/g,m=>'-'+m.toLowerCase());
+  const objToCss=o=>Object.keys(o).map(k=>kebab(k)+':'+o[k]).join(';');
+  let host=document.querySelector('.dv-turn');
+  const TEMPLATE=host.outerHTML;
+  function render(){
+    const vals=inst.renderVals();
+    const out=TEMPLATE
+      .replace(/<sc-if value="\{\{ (\w+) \}\}"[^>]*>([\s\S]*?)<\/sc-if>/g,(m,k,inner)=> vals[k] ? inner : '')
+      .replace(/style="\{\{ (\w+) \}\}"/g,(m,k)=>{
+        const v=vals[k];
+        const css=(v&&typeof v==='object')?objToCss(v):(v==null?'':String(v));
+        return 'style="'+css.replace(/"/g,'&quot;')+'"';
+      })
+      .replace(/onclick="\{\{ (\w+) \}\}"/gi,(m,k)=>'data-evt="'+k+'"')
+      .replace(/\{\{ (\w+) \}\}/g,(m,k)=>{
+        const v=vals[k];
+        if(v==null) return '';
+        if(typeof v==='function') return '';
+        if(typeof v==='object') return objToCss(v);
+        return String(v);
+      });
+    const tmp=document.createElement('div'); tmp.innerHTML=out;
+    const node=tmp.firstElementChild;
+    host.replaceWith(node); host=node;
+    node.querySelectorAll('[data-evt]').forEach(el=>{
+      const k=el.getAttribute('data-evt'); el.removeAttribute('data-evt');
+      const fn=vals[k]; if(typeof fn==='function') el.addEventListener('click',fn);
+    });
+  }
+  inst.__render=render; render();
+})();
+</script>
+
 </body>
 </html>
